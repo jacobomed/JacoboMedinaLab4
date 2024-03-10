@@ -10,7 +10,8 @@
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import java.io.*;
+import java.util.*;
 
 public class Main {
 
@@ -22,25 +23,40 @@ public class Main {
          *
          */
         // Creating an instance of the Pizza class
-        Pizza pizza = new Pizza("Medium", "1001", "Plain", "8.99");
 
-        // Serialization: Converting the Pizza object to JSON string
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            String pizzaJson = objectMapper.writeValueAsString(pizza);
-            System.out.println("Pizza object serialized to JSON string:");
-            System.out.println(pizzaJson);
 
-            // Deserialization: Converting the JSON string back to a Pizza object
-            Pizza deserializedPizza = objectMapper.readValue(pizzaJson, Pizza.class);
-            System.out.println("\nPizza object deserialized from JSON string:");
-            System.out.println("Size: " + deserializedPizza.getSize());
-            System.out.println("Id: " + deserializedPizza.getId());
-            System.out.println("Toppings: " + deserializedPizza.getToppings());
-            System.out.println("Price: " + deserializedPizza.getPrice());
+        class Fixed {
+            public static void main(String[] args) {
+                // Example data
+                List<Pizza> pizzas = new ArrayList<>();
+                pizzas.add(new Pizza("Medium", "1001", "Plain", "8.99"));
+                pizzas.add(new Pizza("Large", "1002", "Pepperoni", "10.99"));
 
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+                // Write pizzas to a flat file
+                try (PrintWriter writer = new PrintWriter(new FileWriter("pizzas.txt"))) {
+                    for (Pizza pizza : pizzas) {
+                        writer.println(pizza.toFixedFormatString());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // Read pizzas from the flat file
+                List<Pizza> loadedPizzas = new ArrayList<>();
+                try (BufferedReader reader = new BufferedReader(new FileReader("pizzas.txt"))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        loadedPizzas.add(Pizza.fromFixedFormatString(line));
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // Display loaded pizzas
+                for (Pizza pizza : loadedPizzas) {
+                    System.out.println("Size: " + pizza.getSize() + ", ID: " + pizza.getId() + ", Toppings: " + pizza.getToppings() + ", Price: " + pizza.getPrice());
+                    System.out.println("Fixed Format String: " + pizza.toFixedFormatString());
+                }
+            }
         }
-    }
-}
+    }}

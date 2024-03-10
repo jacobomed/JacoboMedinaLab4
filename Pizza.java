@@ -72,14 +72,14 @@ public class Pizza {
 
     // Constructors, getters, setters
     public String toFixedFormatString() {
-        return String.format("%-10s%-10s%-20s", size, id, toppings, price);
+        return String.format("%-10s%-10s%-20s%-10s", size, id, toppings, price);
     }
 
     public static Pizza fromFixedFormatString(String line) {
         String size = line.substring(0, 10).trim();
         String id = line.substring(10, 20).trim();
         String toppings = line.substring(20, 40).trim();
-        String price = line.substring(0, 10).trim();
+        String price = line.substring(40, 50).trim();
 
         return new Pizza(size, id, toppings, price);
     }
