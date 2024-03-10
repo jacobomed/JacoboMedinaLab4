@@ -1,6 +1,23 @@
+/** Project: IST 242 LAB 4
+ * Purpose Details: Serialize and Deserialize a Pizza Object and send through flat files, web services, and RabbotMQ
+ * Course:IST 242
+ * Author: Jacobo Medina
+ * Date Developed: March 3, 2024
+ * Last Date Changed: March 9, 2024
+ * Rev: 2.0 (second application developed after first one got ruined)
+
+ */
 
 
+/**
+ * Jacobo Medina
+ */
 public class Pizza {
+/**
+ * Pizza class. Has the constructor, setters, and getters. USed to construct the pizzas that are beings ent over as JSON
+ * files
+ */
+
     public String size;
     public String id;
     public String toppings;

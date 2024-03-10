@@ -1,22 +1,40 @@
+/** Project: IST 242 LAB 4
+ * Purpose Details: Serialize and Deserialize a Pizza Object and send through flat files, web services, and RabbotMQ
+ * Course:IST 242
+ * Author: Jacobo Medina
+ * Date Developed: March 3, 2024
+ * Last Date Changed: March 9, 2024
+ * Rev: 2.0 (second application developed after first one got ruined)
+
+ */
+
+
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+/**
+ * Jacobo Medina
+ */
 public class Send {
+
+/**
+ * sets up to send JSON string as well as deserialized version as a message to Receive class. IF receive class isn't
+ * running then it will leave the message in queue for whenever it is started
+ */
     private final static String QUEUE_NAME = "pizza";
 
     public static void main(String[] argv) throws Exception {
         // Initialize ObjectMapper
         Pizza pizza = new Pizza("Medium", "1001", "Plain", "8.99");
 
-        // Serialization: Converting the student object to JSON string
+        // Serialization
         ObjectMapper objectMapper = new ObjectMapper();
         String pizzaJson = objectMapper.writeValueAsString(pizza);
         System.out.println("main.Pizza object serialized to JSON string:");
         System.out.println(pizzaJson);
-
-        // Define your message or provide a sample JSON string to deserialize
 
 
         ConnectionFactory factory = new ConnectionFactory();

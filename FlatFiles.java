@@ -1,8 +1,27 @@
+/** Project: IST 242 LAB 4
+ * Purpose Details: Serialize and Deserialize a Pizza Object and send through flat files, web services, and RabbotMQ
+ * Course:IST 242
+ * Author: Jacobo Medina
+ * Date Developed: March 3, 2024
+ * Last Date Changed: March 9, 2024
+ * Rev: 2.0 (second application developed after first one got ruined)
+
+ */
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+/**
+ * Jacobo Medina
+ */
 public class FlatFiles {
+/**
+ * FLat files class. Creates a txt file with the pizzas that are being stored
+ */
+
 
     public static void main(String[] args) {
         // Example data

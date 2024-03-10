@@ -1,13 +1,35 @@
+/** Project: IST 242 LAB 4
+ * Purpose Details: Serialize and Deserialize a Pizza Object and send through flat files, web services, and RabbotMQ
+ * Course:IST 242
+ * Author: Jacobo Medina
+ * Date Developed: March 3, 2024
+ * Last Date Changed: March 9, 2024
+ * Rev: 2.0 (second application developed after first one got ruined)
+
+ */
+
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
+
+/**
+ * Jacobo Medina
+ */
+
+
 public class WebServiceCall {
+
+/**
+ *creates a web service call. Sends the JSON file of the pizza constructed as well as the deserialized verion printed out
+ * under it. Needs http server running beforehand in order to function
+ */
+
     public static void main(String[] args) {
         try {
             // Specify the URL of the web service
